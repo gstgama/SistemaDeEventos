@@ -1,7 +1,51 @@
 <h1>Eventos:</h1>
+<hr>
 
-<div *ngFor="let evento of eventos">
-  <p>Tema: {{evento.tema}}</p>
-  <p>Local: {{evento.local}}</p>
-  <hr>
+<div class="form-inline">
+  <div class="form-group mb-2">
+    <input [(ngModel)]="filterList" type="text" class="me-2" placeholder="buscar">
+    <button class="btn btn-outline-success">Buscar</button>
+  </div>
 </div>
+<h3>Filtro: {{ filterList }}</h3>
+
+<table class="table table-striped">
+  <thead class="table-dark">
+    <tr>
+      <th>
+        <button class="btn btn-outline-light btn-sm" (click)="showImg = !showImg">
+          {{ showImg ? 'Ocultar Imagem' : 'Exibir Imagem' }}
+        </button>
+      </th>
+      <th>#</th>
+      <th>Tema</th>
+      <th>Local</th>
+      <th>Data</th>
+      <th>Qtd Pessoas</th>
+      <th>Lote</th>
+      <th>Opções</th>
+    </tr>
+  </thead>
+  <tbody *ngIf="eventos && eventos.length">
+    <tr *ngFor="let evento of filteredEventos">
+      <td>
+        <img [collapse]="!showImg" [isAnimated]="true" src="/assets/{{ evento.imagemURL }}" [style.width.px]="widthImg"
+          [style.margin.px]="marginImg">
+      </td>
+      <td>{{ evento.eventoId }}</td>
+      <td>{{ evento.tema }}</td>
+      <td>{{ evento.local }}</td>
+      <td>{{ evento.dataEvento }}</td>
+      <td>{{ evento.qtdPessoas }}</td>
+      <td>{{evento.lote}}</td>
+      <td></td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr *ngIf="!eventos.length">
+      <td colspan="8" class="text-center">
+        <h4>Nenhum evento encontrado!</h4>
+      </td>
+    </tr>
+  </tfoot>
+</table>
