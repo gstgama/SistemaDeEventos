@@ -1,13 +1,13 @@
-<h1>Eventos:</h1>
+<h3 class="mt-4">Eventos:</h3>
 <hr>
 
 <div class="form-inline">
   <div class="form-group mb-2">
-    <input [(ngModel)]="filterList" type="text" class="me-2" placeholder="buscar">
-    <button class="btn btn-outline-success">Buscar</button>
+    <label class="me-2">Filter: </label>
+    <input [(ngModel)]="filterList" type="text" class="form-label me-2" placeholder="buscar">
+
   </div>
 </div>
-<h3>Filtro: {{ filterList }}</h3>
 
 <table class="table table-striped">
   <thead class="table-dark">
@@ -38,7 +38,10 @@
       <td>{{ evento.dataEvento }}</td>
       <td>{{ evento.qtdPessoas }}</td>
       <td>{{evento.lote}}</td>
-      <td></td>
+      <td>
+        <button type="button" class="btn btn-primary btn-sm me-1">Editar</button>
+        <button type="button" class="btn btn-danger btn-sm">Excluir</button>
+      </td>
     </tr>
   </tbody>
   <tfoot>

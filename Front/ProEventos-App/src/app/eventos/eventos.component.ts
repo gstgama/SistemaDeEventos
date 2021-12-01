@@ -10,7 +10,6 @@ import { filter } from 'rxjs';
 export class EventosComponent implements OnInit {
 
   public eventos: any = [];
-
   public filteredEventos: any = [];
   private _filterList: string = ''
 
