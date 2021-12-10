@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using ProEventos.API.Data;
-using ProEventos.API.Models;
+using ProEventos.Domain;
+using ProEventos.Application.Contracts;
+using Microsoft.AspNetCore.Http;
+using System.Threading.Tasks;
+using System;
 
 namespace ProEventos.API.Controllers
 {
@@ -13,40 +13,104 @@ namespace ProEventos.API.Controllers
   [Route("api/[controller]")]
   public class EventosController : ControllerBase
   {
-    private readonly DataContext _context;
-    public EventosController(DataContext context)
+    private readonly IEventoService _eventoService;
+
+    public EventosController(IEventoService eventoService)
     {
-      _context = context;
+      _eventoService = eventoService;
     }
 
     [HttpGet]
-    public IEnumerable<Evento> Get()
+    public async Task<IActionResult> Get()
     {
-      return _context.Eventos;
+      try
+      {
+        var eventos = await _eventoService.GetAllEventosAsync(true);
+        if (eventos == null) return NotFound("Nenhum evento encontrado");
+
+        return Ok(eventos);
+      }
+      catch (Exception ex)
+      {
+        return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao tentar recuperar eventos. Erro: {ex.Message}");
+      }
     }
 
     [HttpGet("{id}")]
-    public Evento GetByID(int id)
+    public async Task<IActionResult> GetByID(int id)
     {
-      return _context.Eventos.FirstOrDefault(evento => evento.EventoId == id);
+      try
+      {
+        var evento = await _eventoService.GetEventoByIdAsync(id, true);
+        if (evento == null) return NotFound("Evento(s) por ID não encontrado(s).");
+
+        return Ok(evento);
+      }
+      catch (Exception ex)
+      {
+        return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao tentar recuperar evento. Erro: {ex.Message}");
+      }
+    }
+
+    [HttpGet("tema/{tema}")]
+    public async Task<IActionResult> GetByTema(string tema)
+    {
+      try
+      {
+        var evento = await _eventoService.GetAllEventosByTemaAsync(tema, true);
+        if (evento == null) return NotFound("Evento(s) por tema não encontrado(s).");
+
+        return Ok(evento);
+      }
+      catch (Exception ex)
+      {
+        return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao tentar recuperar evento. Erro: {ex.Message}");
+      }
     }
 
     [HttpPost]
-    public string Post()
+    public async Task<IActionResult> Post(Evento model)
     {
-      return "Exemplo de Post!";
+      try
+      {
+        var evento = await _eventoService.AddEventos(model);
+        if (evento == null) return BadRequest("Erro ao tentar adcionar evento.");
+
+        return Ok(evento);
+      }
+      catch (Exception ex)
+      {
+        return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao tentar adicionar evento. Erro: {ex}");
+      }
     }
 
     [HttpPut("{id}")]
-    public string Put(int id)
+    public async Task<IActionResult> Put(int id, Evento model)
     {
-      return $"Exemplo de Put com ID = {id}";
+      try
+      {
+        var evento = await _eventoService.UpdateEvento(id, model);
+        if (evento == null) return BadRequest("Erro ao tentar atualizar evento.");
+
+        return Ok(evento);
+      }
+      catch (Exception ex)
+      {
+        return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao tentar atualizar evento. Erro: {ex}");
+      }
     }
 
     [HttpDelete("{id}")]
-    public string Delete(int id)
+    public async Task<IActionResult> Delete(int id)
     {
-      return $"Exemplo de Delete com ID = {id}";
+      try
+      {
+        return await _eventoService.DeleteEvento(id) ? Ok("Deletado") : BadRequest("Evento não deletado");
+      }
+      catch (Exception ex)
+      {
+        return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao tentar deletar evento. Erro: {ex}");
+      }
     }
 
   }
