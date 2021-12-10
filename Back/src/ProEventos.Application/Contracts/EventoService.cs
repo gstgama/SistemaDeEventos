@@ -39,7 +39,7 @@ namespace ProEventos.Application.Contracts
         var evento = _eventoPersist.GetEventoByIdAsync(eventoId, false);
         if (evento == null) return null;
 
-        model.Id = evento.Id;
+        model.Id = evento.Result.Id;
 
         _geralPersist.Update(model);
         if (await _geralPersist.SaveChangesAsync())
