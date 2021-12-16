@@ -100,7 +100,7 @@
             ],
             "styles": [
               "styles.scss",
-              "node_modules/ngx-toastr/toastr.css"
+              "./node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": []
           }
