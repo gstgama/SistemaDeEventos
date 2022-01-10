@@ -6,6 +6,7 @@ using ProEventos.Application.Contracts;
 using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
 using System;
+using ProEventos.API.Dto;
 
 namespace ProEventos.API.Controllers
 {
@@ -28,12 +29,30 @@ namespace ProEventos.API.Controllers
         var eventos = await _eventoService.GetAllEventosAsync(true);
         if (eventos == null) return NotFound("Nenhum evento encontrado");
 
-        return Ok(eventos);
+        var eventosRetorno = new List<EventoDto>();
+
+        foreach (var evento in eventos)
+        {
+          eventosRetorno.Add(new EventoDto()
+          {
+            Id = evento.Id,
+            Local = evento.Local,
+            DataEvento = evento.DataEvento.ToString(),
+            Tema = evento.Tema,
+            QtdPessoas = evento.QtdPessoas,
+            ImagemURL = evento.ImagemURL,
+            Telefone = evento.Telefone,
+            Email = evento.Email
+          });
+
+        }
+        return Ok(eventosRetorno);
       }
       catch (Exception ex)
       {
         return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao tentar recuperar eventos. Erro: {ex.Message}");
       }
+
     }
 
     [HttpGet("{id}")]
