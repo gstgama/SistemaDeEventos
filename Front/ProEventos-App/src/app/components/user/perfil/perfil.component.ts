@@ -15,6 +15,7 @@ export class PerfilComponent implements OnInit {
     this.validation();
   }
 
+  //Conveniente para pegar um FormField apenas com a letra F.
   get f(): any{
     return this.form.controls;
   }
@@ -38,6 +39,18 @@ export class PerfilComponent implements OnInit {
       senha: ['', [Validators.required, Validators.minLength(6)]],
       confirmeSenha: ['', [Validators.required]],
     }, formOptions)
+  }
+
+  onSubmit(){
+    //Vai parar aqui se o form estiver inválido
+    if (this.form.invalid){
+      return;
+    }
+  }
+
+  resetForm(event: any): void{
+    event.preventDefault();
+    this.form.reset();
   }
 
 }
