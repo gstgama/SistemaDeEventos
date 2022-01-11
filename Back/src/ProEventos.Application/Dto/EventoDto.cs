@@ -1,4 +1,4 @@
-namespace ProEventos.API.Dto
+namespace ProEventos.Application.Dto
 {
   public class EventoDto
   {

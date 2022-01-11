@@ -1,7 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using ProEventos.Application.Dto;
 using ProEventos.Domain;
-using ProEventos.Persistence.Contexts;
 using ProEventos.Persistence.Contracts;
 
 namespace ProEventos.Application.Contracts
@@ -77,6 +78,23 @@ namespace ProEventos.Application.Contracts
       {
         var eventos = await _eventoPersist.GetAllEventosAsync(includePalestrantes);
         if (eventos == null) return null;
+
+        var eventosRetorno = new List<EventoDto>();
+
+        foreach (var evento in eventos)
+        {
+          eventosRetorno.Add(new EventoDto()
+          {
+            Id = evento.Id,
+            Local = evento.Local,
+            DataEvento = evento.DataEvento.ToString(),
+            Tema = evento.Tema,
+            QtdPessoas = evento.QtdPessoas,
+            ImagemURL = evento.ImagemURL,
+            Telefone = evento.Telefone,
+            Email = evento.Email
+          });
+        }
 
         return eventos;
       }
