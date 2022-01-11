@@ -11,6 +11,7 @@ import { PerfilComponent } from './components/user/perfil/perfil.component';
 import { LoginComponent } from './components/user/login/login.component';
 import { RegistrationComponent } from './components/user/registration/registration.component';
 import { UserComponent } from './components/user/user.component';
+import { QuintetoComponent } from './components/eventos/quinteto/quinteto.component';
 
 const routes: Routes = [
   {
@@ -29,15 +30,18 @@ const routes: Routes = [
     [
       {path: 'detalhe/:id', component: EventoDetalheComponent},
       {path: 'detalhe', component: EventoDetalheComponent},
-      {path: 'lista', component: EventoListaComponent}
+      {path: 'lista', component: EventoListaComponent},
+      {path: 'quinteto', component: QuintetoComponent}
     ]
   },
   {path: 'dashboard', component: DashboardComponent},
   {path: 'palestrantes', component: PalestrantesComponent},
   {path: 'contatos', component: ContatosComponent},
   {path: 'contatos', component: ContatosComponent},
-  {path: '', redirectTo:'dashboard', pathMatch: 'full'},
-  {path: '**', redirectTo:'dashboard', pathMatch: 'full'},
+  // {path: '', redirectTo:'dashboard', pathMatch: 'full'},
+  // {path: '**', redirectTo:'dashboard', pathMatch: 'full'},
+  {path: '', redirectTo:'eventos/quinteto', pathMatch: 'full'},
+  {path: '**', redirectTo:'eventos/quinteto', pathMatch: 'full'},
 ];
 
 @NgModule({

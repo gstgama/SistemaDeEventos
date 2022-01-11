@@ -1,0 +1,220 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">
+    <!-- <img src="~/img/Flex_WHT_Med_r.png" width="100" height="50" class="d-inline-block align-content-center" alt="" />
+      Quinteto -->
+    <div>Quinteto</div>
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="">Home </a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Action Tracker</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Cadastro de falhas</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Cadastro de usuários</a>
+      </li>
+    </ul>
+  </div>
+  <div class="collapse navbar-collapse justify-content-end " id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto ">
+      <li>
+        <a class="btn btn-sm btn-outline-secondary my-2 my-sm-0 text-light" href="#">Logout [@ViewBag.UserName]</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="row align-items-center">
+    <!-- Ver COL's -->
+    <!--Fazer um titulo de Cadastro de estação-->
+    <form>
+      <div class="form-group mt-2">
+        <label for="exampleFormControlSelect1">Cliente</label>
+        <select class="form-control" style="cursor: pointer;" id="exampleFormControlSelect1" placeholder="xpto">
+          <option hidden>Selecione o cliente</option>
+          <option>BoardIBM</option>
+          <option>Canadian</option>
+          <option>Cisco</option>
+          <option>Compaq</option>
+          <option>Enel</option>
+          <option>Facemask</option>
+          <option>HP Computing</option>
+          <option>HP Inkjet</option>
+          <option>HP Laser</option>
+          <option>HP Monitor</option>
+          <option>HPE</option>
+          <option>Intel</option>
+          <option>Lexmark</option>
+          <option>Magnamed</option>
+          <option>Motorola</option>
+          <option>Nextracker</option>
+          <option>PIC</option>
+          <option>Softlayer</option>
+          <option>Verifone</option>
+        </select>
+      </div>
+
+      <div class="form-group mt-2 mt-2">
+        <label for="exampleFormControlSelect1">KPI</label>
+        <select class="form-control" style="cursor: pointer;" id="exampleFormControlSelect1">
+          <option hidden>Selecione o KPI</option>
+          <option>xpto</option>
+          <option>xpto</option>
+          <option>xpto</option>
+          <option>xpto</option>
+          <option>xpto</option>
+        </select>
+      </div>
+
+      <div class="form-group mt-2">
+        <label for="exampleFormControlSelect1">Turno</label>
+        <select class="form-control" style="cursor: pointer;" id="exampleFormControlSelect1">
+          <option hidden>Selecione o turno</option>
+          <option>ADM</option>
+          <option>1º turno</option>
+          <option>2º turno</option>
+          <option>3º turno</option>
+        </select>
+      </div>
+
+      <div class="form-group mt-2">
+        <label for="exampleFormControlSelect1">Linha</label>
+        <select class="form-control" style="cursor: pointer;" id="exampleFormControlSelect1">
+          <option hidden>Selecione a linha</option>
+          <option>xpto</option>
+          <option>xpto</option>
+          <option>xpto</option>
+          <option>xpto</option>
+          <option>xpto</option>
+        </select>
+      </div>
+
+      <div class="form-group mt-2">
+        <label for="exampleFormControlInput1">Modelo</label>
+        <input type="text" class="form-control" id="exampleFormControlInput1"
+          placeholder="*descrever exemplo de modelo*">
+      </div>
+
+      <div class="form-group mt-2">
+        <label for="exampleFormControlSelect1">Falha</label>
+        <select class="form-control" style="cursor: pointer;" id="exampleFormControlSelect1">
+          <option hidden>Seleciona a falha</option>
+          <option>xpto</option>
+          <option>xpto</option>
+          <option>xpto</option>
+          <option>xpto</option>
+          <option>xpto</option>
+        </select>
+      </div>
+
+      <div class="form-group mt-2">
+        <label for="exampleFormControlSelect1">Status</label>
+        <select class="form-control" style="cursor: pointer;" id="exampleFormControlSelect1">
+          <option hidden>Seleciona o status</option>
+          <option>xpto</option>
+          <option>xpto</option>
+          <option>xpto</option>
+          <option>xpto</option>
+          <option>xpto</option>
+        </select>
+      </div>
+
+      <div class="form-group mt-2">
+        <label for="exampleFormControlInput1">Causa raiz</label>
+        <input type="text" class="form-control" id="exampleFormControlInput1"
+          placeholder="*descrever exemplo de cauxa raiz*">
+      </div>
+
+      <div class="form-group mt-2">
+        <label for="exampleFormControlInput1">Ação</label>
+        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="*descrever exemplo de ação*">
+      </div>
+
+      <div class="form-group mt-2">
+        <label for="exampleFormControlInput1">Responsável</label>
+        <input type="text" class="form-control" id="exampleFormControlInput1"
+          placeholder="*descrever exemplo do responsável*">
+      </div>
+
+      <div class="form-group mt-2">
+        <label for="exampleFormControlSelect1">Área</label>
+        <select class="form-control" style="cursor: pointer;" id="exampleFormControlSelect1">
+          <option hidden>Seleciona área</option>
+          <option>xpto</option>
+          <option>xpto</option>
+          <option>xpto</option>
+          <option>xpto</option>
+          <option>xpto</option>
+        </select>
+      </div>
+
+      <div class="form-group mt-2">
+        <label for="exampleFormControlSelect1">Treinamento 1º turno</label>
+        <select class="form-control" style="cursor: pointer;" id="exampleFormControlSelect1">
+          <option>Não</option>
+          <option>Sim</option>
+        </select>
+      </div>
+
+      <div class="form-group mt-2">
+        <label for="exampleFormControlSelect1">Treinamento 2º turno</label>
+        <select class="form-control" style="cursor: pointer;" id="exampleFormControlSelect1">
+          <option>Não</option>
+          <option>Sim</option>
+        </select>
+      </div>
+
+      <div class="form-group mt-2">
+        <label for="exampleFormControlSelect1">Treinamento 3º turno</label>
+        <select class="form-control" style="cursor: pointer;" id="exampleFormControlSelect1">
+          <option>Não</option>
+          <option>Sim</option>
+        </select>
+      </div>
+
+      <div class="form-group mt-2">
+        <label for="exampleFormControlTextarea1">Observação</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
+      </div>
+
+      <div class="form-group mt-2 mb-3">
+        <label for="exampleFormControlInput1">Data</label>
+        <input type="date" class="form-control" id="exampleFormControlInput1">
+      </div>
+
+      <button type="button" class="btn btn-success">Success</button>
+      <button type="button" class="btn btn-danger">Danger</button>
+
+    </form>
+  </div>
+</div>
+
+<!-- <div class="BodyImage">
+  @RenderBody()
+  <hr /> -->
+<footer class="FooterStyle bg-dark">
+  <div class="mx-auto text-light" style="width: 350px; height: 30px;">
+    <p>&copy; @DateTime.Now.Year - IT Shopfloor Brazil</p>
+  </div>
+</footer>
+<!-- </div> -->
+
+<!-- @Scripts.Render("~/Scripts/jquery-3.6.0.min.js")
+  @Scripts.Render("~/Scripts/JS/bootstrap.js")
+  @Scripts.Render("~/Scripts/jquery-ui.js")
+
+  @*@Scripts.Render("~/bundles/jquery")
+  @Scripts.Render("~/bundles/bootstrap")*@
+
+  @RenderSection("scripts", required: false) -->
