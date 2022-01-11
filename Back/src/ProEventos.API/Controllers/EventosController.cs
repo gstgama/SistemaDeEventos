@@ -6,6 +6,7 @@ using ProEventos.Application.Contracts;
 using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
 using System;
+using ProEventos.Application.Dto;
 
 namespace ProEventos.API.Controllers
 {
@@ -34,6 +35,7 @@ namespace ProEventos.API.Controllers
       {
         return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao tentar recuperar eventos. Erro: {ex.Message}");
       }
+
     }
 
     [HttpGet("{id}")]
