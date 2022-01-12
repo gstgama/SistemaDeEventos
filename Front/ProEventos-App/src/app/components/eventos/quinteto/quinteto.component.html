@@ -36,40 +36,78 @@
 
 <div class="container col-6">
   <div class="row mt-3">
-    <h2>Cadastro de ação</h2>
+    <h2>Cadastro de usuário</h2>
     <hr>
   </div>
 
   <div class="row">
     <form>
+
       <div class="form-row">
         <div class="form-group">
-          <label for="cliente">Cliente</label>
-          <select class="form-control form-select" style="cursor: pointer;" id="cliente" name="cliente">
-            <option hidden>Selecione o cliente</option>
-            <option>BoardIBM</option>
-            <option>Canadian</option>
-            <option>Cisco</option>
-            <option>Compaq</option>
-            <option>Enel</option>
-            <option>Facemask</option>
-            <option>HP Computing</option>
-            <option>HP Inkjet</option>
-            <option>HP Laser</option>
-            <option>HP Monitor</option>
-            <option>HPE</option>
-            <option>Intel</option>
-            <option>Lexmark</option>
-            <option>Magnamed</option>
-            <option>Motorola</option>
-            <option>Nextracker</option>
-            <option>PIC</option>
-            <option>Softlayer</option>
-            <option>Verifone</option>
+          <div class="row ">
+            <div class="col-10">
+              <label for="usuário">Usuário</label>
+              <input type="text" class="form-control" id="usuário" name="usuário" placeholder="Ex: saogcard">
+            </div>
+            <div class="col-2">
+              <button type="button" class="btn btn-success btn-sm btn-default">Buscar</button>
+              <!--Deixar botao alinhado com o input-->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group mt-2">
+          <label for="nomecompleto">Nome Completo</label>
+          <input type="text" class="form-control" id="modelo" placeholder="Ex: Gustavo Gama Cardozo"
+            name="nomecompleto">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group mt-2">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" id="email" name="email" placeholder="Ex: gustavo.cardozo@flex.com">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group mt-2">
+          <label for="descricao">Descricao</label>
+          <input type="descricao" class="form-control" id="descricao" name="descricao"
+            placeholder="*descrever um exemplo de descricao*">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group mt-2 mt-2">
+          <label for="grupo">Grupo</label>
+          <select class="form-control form-select" style="cursor: pointer;" id="grupo" name="grupo">
+            <option hidden>Selecione um grupo</option>
+            <option>Admin</option>
+            <option>User</option>
+            <option>User [Manager]</option>
           </select>
         </div>
       </div>
 
+      <div class="form-row">
+        <div class="form-group mt-2 mt-2">
+          <label for="listadedistruibuicao">Lista de distribuição</label>
+          <select class="form-control form-select" style="cursor: pointer;" id="listadedistruibuicao"
+            name="listadedistruibuicao">
+            <option hidden>Selecione uma lista</option>
+            <option>Distribuição L1</option>
+            <option>Distribuição L2</option>
+            <option>Distribuição L3</option>
+          </select>
+        </div>
+      </div>
+
+
+      <!--
       <div class="form-row">
         <div class="form-group mt-2 mt-2">
           <label for="kpi">KPI</label>
@@ -86,154 +124,15 @@
 
       <div class="form-row">
         <div class="form-group mt-2">
-          <label for="turno">Turno</label>
-          <select class="form-control form-select" style="cursor: pointer;" id="turno" name="turno">
-            <option hidden>Selecione o turno</option>
-            <option>ADM</option>
-            <option>1º turno</option>
-            <option>2º turno</option>
-            <option>3º turno</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group mt-2">
-          <label for="linha">Linha</label>
-          <select class="form-control form-select" style="cursor: pointer;" id="linha" name="linha">
-            <option hidden>Selecione a linha</option>
-            <option>xpto</option>
-            <option>xpto</option>
-            <option>xpto</option>
-            <option>xpto</option>
-            <option>xpto</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group mt-2">
           <label for="modelo">Modelo</label>
           <input type="text" class="form-control" id="modelo" placeholder="*descrever exemplo de modelo*" name="modelo">
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group mt-2">
-          <label for="falha">Falha</label>
-          <select class="form-control form-select" style="cursor: pointer;" id="falha" name="falha">
-            <option hidden>Seleciona a falha</option>
-            <option>xpto</option>
-            <option>xpto</option>
-            <option>xpto</option>
-            <option>xpto</option>
-            <option>xpto</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group mt-2">
-          <label for="status">Status</label>
-          <select class="form-control form-select" style="cursor: pointer;" id="status" name="status">
-            <option hidden>Seleciona o status</option>
-            <option>xpto</option>
-            <option>xpto</option>
-            <option>xpto</option>
-            <option>xpto</option>
-            <option>xpto</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group mt-2">
-          <label for="causaraiz">Causa raiz</label>
-          <input type="text" class="form-control" id="causa-raiz" placeholder="*descrever exemplo de cauxa raiz*"
-            name="causaraiz">
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group mt-2">
-          <label for="acao">Ação</label>
-          <input type="text" class="form-control" id="acao" placeholder="*descrever exemplo de ação*" name="acao">
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group mt-2">
-          <label for="responsavel">Responsável</label>
-          <input type="text" class="form-control" id="responsavel" placeholder="*descrever exemplo do responsável*"
-            name="responsavel">
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group mt-2">
-          <label for="area">Área</label>
-          <select class="form-control form-select" style="cursor: pointer;" id="area" name="area">
-            <option hidden>Seleciona área</option>
-            <option>xpto</option>
-            <option>xpto</option>
-            <option>xpto</option>
-            <option>xpto</option>
-            <option>xpto</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group mt-2">
-          <label for="treinamento1turno">Treinamento 1º turno</label>
-          <select class="form-control form-select" style="cursor: pointer;" id="treinamento1turno"
-            name="treinamento1turno">
-            <option>Não</option>
-            <option>Sim</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group mt-2">
-          <label for="treinamento2turno">Treinamento 2º turno</label>
-          <select class="form-control form-select" style="cursor: pointer;" id="treinamento2turno"
-            name="treinamento2turno">
-            <option>Não</option>
-            <option>Sim</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group mt-2">
-          <label for="treinamento3turno">Treinamento 3º turno</label>
-          <select class="form-control form-select" style="cursor: pointer;" id="treinamento3turno"
-            name="treinamento3turno">
-            <option>Não</option>
-            <option>Sim</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group mt-2">
-          <label for="observacao">Observação</label>
-          <textarea class="form-control" id="observacao" rows="4" name="observacao"></textarea>
-        </div>
-      </div>
-
-      <div class="form-row style">
-        <div class="form-group mt-2 mb-3">
-          <label for="data">Data</label>
-          <input type="date" class="form-control" id="data" name="data">
         </div>
       </div>
 
       <div class="form-row d-flex justify-content-between mb-3">
         <button type="button" class="btn btn-danger">Cancelar</button>
         <button type="button" class="btn btn-success">Cadastrar</button>
-      </div>
+      </div> -->
 
     </form>
   </div>
