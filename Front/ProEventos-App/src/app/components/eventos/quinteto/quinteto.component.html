@@ -35,107 +35,347 @@
 </nav>
 
 <div class="container col-6">
+
+  <!----------- CADASTRO DE USUÁRIO ----------->
+
   <div class="row mt-3">
     <h2>Cadastro de usuário</h2>
     <hr>
   </div>
 
-  <div class="row">
-    <form>
+  <form>
 
-      <div class="form-row">
-        <div class="form-group">
-          <div class="row ">
-            <div class="col-10">
-              <label for="usuário">Usuário</label>
-              <input type="text" class="form-control" id="usuário" name="usuário" placeholder="Ex: saogcard">
-            </div>
-            <div class="col-2">
-              <button type="button" class="btn btn-success btn-sm btn-default">Buscar</button>
-              <!--Deixar botao alinhado com o input-->
-            </div>
+    <div class="form-row">
+      <div class="form-group">
+        <div class="row">
+          <div class="col-10">
+            <label for="usuário">Usuário</label>
+            <input type="text" class="form-control" id="usuário" name="usuário" placeholder="Ex: saogcard">
+          </div>
+          <div class="col-2 mt-4">
+            <button type="button" class="btn btn-primary">Buscar</button>
           </div>
         </div>
       </div>
+    </div>
 
-      <div class="form-row">
-        <div class="form-group mt-2">
-          <label for="nomecompleto">Nome Completo</label>
-          <input type="text" class="form-control" id="modelo" placeholder="Ex: Gustavo Gama Cardozo"
-            name="nomecompleto">
+    <div class="form-row">
+      <div class="form-group mt-2">
+        <label for="nomecompleto">Nome Completo</label>
+        <input type="text" class="form-control" id="modelo" placeholder="Ex: Gustavo Gama Cardozo" name="nomecompleto">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group mt-2">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" name="email" placeholder="Ex: gustavo.cardozo@flex.com">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group mt-2">
+        <label for="descricao">Descricao</label>
+        <input type="descricao" class="form-control" id="descricao" name="descricao"
+          placeholder="*descrever um exemplo de descricao*">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group mt-2">
+        <label for="grupo">Grupo</label>
+        <select class="form-control form-select" style="cursor: pointer;" id="grupo" name="grupo">
+          <option hidden>Selecione um grupo</option>
+          <option>Admin</option>
+          <option>User</option>
+          <option>User [Manager]</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group mt-2">
+        <label for="listadedistruibuicao">Lista de distribuição</label>
+        <select class="form-control form-select" style="cursor: pointer;" id="listadedistruibuicao"
+          name="listadedistruibuicao">
+          <option hidden>Selecione uma lista</option>
+          <option>Distribuição L1</option>
+          <option>Distribuição L2</option>
+          <option>Distribuição L3</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group mt-3">
+        <h5 for="clientes">Clientes</h5>
+
+        <div class="d-flex justify-content-between flex-nowrap">
+
+          <div class="column me-1">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="IBM" value="IBM">
+              <label class="form-check-label" for="IBM">IBM</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="Canadian" value="Canadian">
+              <label class="form-check-label" for="Canadian">Canadian</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="Cisco" value="Cisco">
+              <label class="form-check-label" for="Cisco">Cisco</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="Compaq" value="Compaq">
+              <label class="form-check-label" for="Compaq">Compaq</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="Enel" value="Enel">
+              <label class="form-check-label" for="Enel">Enel</label>
+            </div>
+          </div>
+
+          <div class="column me-1">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="Facemask" value="Facemask">
+              <label class="form-check-label" for="Facemask">Facemask</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="HPComp" value="HPComp">
+              <label class="form-check-label" for="HPComp">HP Comp</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="HPInk" value="HPInk">
+              <label class="form-check-label" for="HPInk">HP Ink</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="HPLaser" value="HPLaser">
+              <label class="form-check-label" for="HPLaser">HP Laser</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="HPMonitor" value="HPMonitor">
+              <label class="form-check-label" for="HPMonitor">HP Monitor</label>
+            </div>
+          </div>
+
+          <div class="column me-1">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="HPE" value="HPE">
+              <label class="form-check-label" for="HPE">HPE</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="Intel" value="Intel">
+              <label class="form-check-label" for="Intel">Intel</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="Lexmark" value="Lexmark">
+              <label class="form-check-label" for="Lexmark">Lexmark</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="Magnamed" value="Magnamed">
+              <label class="form-check-label" for="Magnamed">Magnamed</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="Motorola" value="Motorola">
+              <label class="form-check-label" for="Motorola">Motorola</label>
+            </div>
+          </div>
+
+          <div class="column">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="Nextracker" value="Nextracker">
+              <label class="form-check-label" for="Nextracker">Nextracker</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="PIC" value="PIC">
+              <label class="form-check-label" for="PIC">PIC</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="Softlayer" value="Softlayer">
+              <label class="form-check-label" for="Softlayer">Softlayer</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="Verifone" value="Verifone">
+              <label class="form-check-label" for="Verifone">Verifone</label>
+            </div>
+          </div>
+
         </div>
       </div>
+    </div>
 
-      <div class="form-row">
-        <div class="form-group mt-2">
-          <label for="email">Email</label>
-          <input type="email" class="form-control" id="email" name="email" placeholder="Ex: gustavo.cardozo@flex.com">
-        </div>
+    <div class="form-row d-flex justify-content-end mt-3 mb-3">
+      <div class="me-4">
+        <button type="reset" class="btn btn-danger">Cancelar</button>
       </div>
+      <button type="submit" class="btn btn-success">Cadastrar</button>
+    </div>
 
-      <div class="form-row">
-        <div class="form-group mt-2">
-          <label for="descricao">Descricao</label>
-          <input type="descricao" class="form-control" id="descricao" name="descricao"
-            placeholder="*descrever um exemplo de descricao*">
-        </div>
-      </div>
+  </form>
 
-      <div class="form-row">
-        <div class="form-group mt-2 mt-2">
-          <label for="grupo">Grupo</label>
-          <select class="form-control form-select" style="cursor: pointer;" id="grupo" name="grupo">
-            <option hidden>Selecione um grupo</option>
-            <option>Admin</option>
-            <option>User</option>
-            <option>User [Manager]</option>
-          </select>
-        </div>
-      </div>
+  <!----------- CONSULTA DE USUÁRIO ----------->
 
-      <div class="form-row">
-        <div class="form-group mt-2 mt-2">
-          <label for="listadedistruibuicao">Lista de distribuição</label>
-          <select class="form-control form-select" style="cursor: pointer;" id="listadedistruibuicao"
-            name="listadedistruibuicao">
-            <option hidden>Selecione uma lista</option>
-            <option>Distribuição L1</option>
-            <option>Distribuição L2</option>
-            <option>Distribuição L3</option>
-          </select>
-        </div>
-      </div>
-
-
-      <!--
-      <div class="form-row">
-        <div class="form-group mt-2 mt-2">
-          <label for="kpi">KPI</label>
-          <select class="form-control form-select" style="cursor: pointer;" id="kpi" name="kpi">
-            <option hidden>Selecione o KPI</option>
-            <option>xpto</option>
-            <option>xpto</option>
-            <option>xpto</option>
-            <option>xpto</option>
-            <option>xpto</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group mt-2">
-          <label for="modelo">Modelo</label>
-          <input type="text" class="form-control" id="modelo" placeholder="*descrever exemplo de modelo*" name="modelo">
-        </div>
-      </div>
-
-      <div class="form-row d-flex justify-content-between mb-3">
-        <button type="button" class="btn btn-danger">Cancelar</button>
-        <button type="button" class="btn btn-success">Cadastrar</button>
-      </div> -->
-
-    </form>
+  <div class="row mt-4">
+    <h2>Consulta de usuário</h2>
+    <hr>
   </div>
+
+  <form>
+    <div class="form-row">
+      <div class="form-group">
+        <div class="row d-flex justify-content-between flex-nowrap">
+          <div class="col-9">
+            <label for="usuário">Usuário</label>
+            <input type="text" class="form-control" id="usuário" name="usuário" placeholder="Ex: saogcard">
+          </div>
+          <div class="col mt-4">
+            <button type="button" class="btn btn-primary">Consultar</button>
+          </div>
+          <div class="col mt-4">
+            <button type="button" class="btn btn-primary">Limpar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <div class="row">
+          <table class="table table-striped mt-3">
+            <thead>
+              <tr class="table-dark">
+                <th scope="col">Usuário</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Email</th>
+                <th scope="col">Grupo</th>
+                <th scope="col">Nível</th>
+                <th scope="col">Status</th>
+                <th scope="col">Ação</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>saogcard</td>
+                <td>Gustavo Cardozo</td>
+                <td>gustavo.cardozo@flex.com</td>
+                <td>Admin</td>
+                <td>L1</td>
+                <td>Ativo</td>
+                <td><button type="button" class="btn btn-primary btn-sm">Editar</button></td>
+              </tr>
+              <tr>
+                <td>saopdour</td>
+                <td>Paulo Dourado</td>
+                <td>paulo.dourado@flex.com</td>
+                <td>Admin</td>
+                <td>L2</td>
+                <td>Ativo</td>
+                <td><button type="button" class="btn btn-primary btn-sm">Editar</button></td>
+              </tr>
+              <tr>
+                <td>saokcama</td>
+                <td>Ketni Camargo</td>
+                <td>ketni.camargo@flex.com</td>
+                <td>Admin</td>
+                <td>L1</td>
+                <td>Ativo</td>
+                <td><button type="button" class="btn btn-primary btn-sm">Editar</button></td>
+              </tr>
+              <tr>
+                <td>xpto</td>
+                <td>xpto</td>
+                <td>xpto.xpto@flex.com</td>
+                <td>xpto</td>
+                <td>xpto</td>
+                <td>xpto</td>
+                <td><button type="button" class="btn btn-primary btn-sm">Editar</button></td>
+              </tr>
+              <tr>
+                <td>xpto</td>
+                <td>xpto</td>
+                <td>xpto.xpto@flex.com</td>
+                <td>xpto</td>
+                <td>xpto</td>
+                <td>xpto</td>
+                <td><button type="button" class="btn btn-primary btn-sm">Editar</button></td>
+              </tr>
+              <tr>
+                <td>xpto</td>
+                <td>xpto</td>
+                <td>xpto.xpto@flex.com</td>
+                <td>xpto</td>
+                <td>xpto</td>
+                <td>xpto</td>
+                <td><button type="button" class="btn btn-primary btn-sm">Editar</button></td>
+              </tr>
+              <tr>
+                <td>xpto</td>
+                <td>xpto</td>
+                <td>xpto.xpto@flex.com</td>
+                <td>xpto</td>
+                <td>xpto</td>
+                <td>xpto</td>
+                <td><button type="button" class="btn btn-primary btn-sm">Editar</button></td>
+              </tr>
+              <tr>
+                <td>xpto</td>
+                <td>xpto</td>
+                <td>xpto.xpto@flex.com</td>
+                <td>xpto</td>
+                <td>xpto</td>
+                <td>xpto</td>
+                <td><button type="button" class="btn btn-primary btn-sm">Editar</button></td>
+              </tr>
+              <tr>
+                <td>xpto</td>
+                <td>xpto</td>
+                <td>xpto.xpto@flex.com</td>
+                <td>xpto</td>
+                <td>xpto</td>
+                <td>xpto</td>
+                <td><button type="button" class="btn btn-primary btn-sm">Editar</button></td>
+              </tr>
+              <tr>
+                <td>xpto</td>
+                <td>xpto</td>
+                <td>xpto.xpto@flex.com</td>
+                <td>xpto</td>
+                <td>xpto</td>
+                <td>xpto</td>
+                <td><button type="button" class="btn btn-primary btn-sm">Editar</button></td>
+              </tr>
+
+            </tbody>
+
+          </table>
+
+          <div class="d-flex justify-content-center">
+            <div class="row text-center">
+              <nav>
+                <ul class="pagination">
+                  <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Anterior">
+                      <span aria-hidden="true">&laquo;</span>
+                    </a>
+                  </li>
+                  <li class="page-item"><a class="page-link" href="#">1</a></li>
+                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Próximo">
+                      <span aria-hidden="true">&raquo;</span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </form>
 </div>
 
 <!-- <div class="BodyImage">
