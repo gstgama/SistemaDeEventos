@@ -44,7 +44,7 @@ namespace ProEventos.API.Controllers
       try
       {
         var evento = await _eventoService.GetEventoByIdAsync(id, true);
-        if (evento == null) return NotFound("Evento(s) por ID não encontrado(s).");
+        if (evento == null) return NotFound("Evento(s) por ID não encontrado(s);..");
 
         return Ok(evento);
       }
