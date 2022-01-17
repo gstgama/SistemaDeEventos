@@ -27,6 +27,7 @@ namespace ProEventos.Application.Contracts
         var evento = _mapper.Map<Evento>(model);
 
         _geralPersist.Add<Evento>(evento);
+        
         if (await _geralPersist.SaveChangesAsync())
         {
           var eventoRetorno = await _eventoPersist.GetEventoByIdAsync(evento.Id, false);
@@ -40,25 +41,22 @@ namespace ProEventos.Application.Contracts
         throw new Exception(ex.Message);
       }
     }
-
-    //ENTENDER ERRO
     public async Task<EventoDto> UpdateEvento(int eventoId, EventoDto model)
     {
       try
       {
-        var evento = _eventoPersist.GetEventoByIdAsync(eventoId, false);
-
+        var evento = await _eventoPersist.GetEventoByIdAsync(eventoId, false);
         if (evento == null) return null;
 
-        model.Id = evento.Result.Id;
+        model.Id = evento.Id;
 
-        await _mapper.Map(model, evento);
+        _mapper.Map(model, evento);
 
-        _geralPersist.Update(evento);
+        _geralPersist.Update<Evento>(evento);
 
         if (await _geralPersist.SaveChangesAsync())
         {
-          var eventoRetorno = await _eventoPersist.GetEventoByIdAsync(model.Id, false);
+          var eventoRetorno = await _eventoPersist.GetEventoByIdAsync(evento.Id, false);
 
           return _mapper.Map<EventoDto>(eventoRetorno);
         }
@@ -71,7 +69,6 @@ namespace ProEventos.Application.Contracts
 
       }
     }
-    //ENTENDER ERRO
 
     public async Task<bool> DeleteEvento(int eventoId)
     {
