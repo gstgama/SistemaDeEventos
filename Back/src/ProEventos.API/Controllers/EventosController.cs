@@ -27,7 +27,7 @@ namespace ProEventos.API.Controllers
       try
       {
         var eventos = await _eventoService.GetAllEventosAsync(true);
-        if (eventos == null) return NotFound("Nenhum evento encontrado");
+        if (eventos == null) return NoContent();
 
         return Ok(eventos);
       }
@@ -44,7 +44,7 @@ namespace ProEventos.API.Controllers
       try
       {
         var evento = await _eventoService.GetEventoByIdAsync(id, true);
-        if (evento == null) return NotFound("Evento(s) por ID não encontrado(s.;");
+        if (evento == null) return NoContent();
 
         return Ok(evento);
       }
@@ -60,7 +60,7 @@ namespace ProEventos.API.Controllers
       try
       {
         var evento = await _eventoService.GetAllEventosByTemaAsync(tema, true);
-        if (evento == null) return NotFound("Evento(s) por tema não encontrado(s).");
+        if (evento == null) return NoContent();
 
         return Ok(evento);
       }
@@ -76,7 +76,7 @@ namespace ProEventos.API.Controllers
       try
       {
         var evento = await _eventoService.AddEventos(model);
-        if (evento == null) return BadRequest("Erro ao tentar adcionar evento.");
+        if (evento == null) return NoContent();
 
         return Ok(evento);
       }
@@ -92,7 +92,7 @@ namespace ProEventos.API.Controllers
       try
       {
         var evento = await _eventoService.UpdateEvento(id, model);
-        if (evento == null) return BadRequest("Erro ao tentar atualizar evento.");
+        if (evento == null) return NoContent();
 
         return Ok(evento);
       }
@@ -107,7 +107,10 @@ namespace ProEventos.API.Controllers
     {
       try
       {
-        return await _eventoService.DeleteEvento(id) ? Ok("Deletado") : BadRequest("Evento não deletado");
+        var evento = await _eventoService.GetEventoByIdAsync(id, true);
+        if (evento == null) return NoContent();
+
+        return await _eventoService.DeleteEvento(id) ? Ok("Deletado") : throw new Exception("Ocorreu um problema não específico ao tentar deletar o evento");
       }
       catch (Exception ex)
       {

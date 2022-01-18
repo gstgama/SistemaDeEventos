@@ -9,6 +9,9 @@ namespace ProEventos.Application.Helpers
     public ProEventoProfile()
     {
       CreateMap<Evento, EventoDto>().ReverseMap();
+      CreateMap<Lote, LoteDto>().ReverseMap();
+      CreateMap<Palestrante, PalestranteDto>().ReverseMap();
+      CreateMap<RedeSocial, RedeSocialDto>().ReverseMap();
     }
   }
 }
