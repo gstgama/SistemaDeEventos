@@ -27,7 +27,7 @@ namespace ProEventos.Application.Contracts
         var evento = _mapper.Map<Evento>(model);
 
         _geralPersist.Add<Evento>(evento);
-        
+
         if (await _geralPersist.SaveChangesAsync())
         {
           var eventoRetorno = await _eventoPersist.GetEventoByIdAsync(evento.Id, false);
