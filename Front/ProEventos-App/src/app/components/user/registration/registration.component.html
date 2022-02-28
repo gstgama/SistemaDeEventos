@@ -15,14 +15,14 @@
           <h3 class="border-bottom">Cadastro de Usuário</h3>
         </div>
         <div class="form-row">
-          <div class="form-group col-sm-6">
+          <div class="form-group">
             <label>Primeiro Nome</label>
             <input type="text" class="form-control"
               [ngClass]="{'is-invalid': f.primeiroNome.errors && f.primeiroNome.touched}"
               placeholder="Insira o Primeiro nome" formControlName="primeiroNome" />
             <div *ngIf="f.primeiroNome.errors.required" class="invalid-feedback">Primeiro nome obrigatório.</div>
           </div>
-          <div class="form-group col-sm-6">
+          <div class="form-group">
             <label>Último nome</label>
             <input type="text" class="form-control"
               [ngClass]="{'is-invalid': f.ultimoNome.errors && f.ultimoNome.touched}" formControlName="ultimoNome"
@@ -44,7 +44,7 @@
           <div *ngIf="f.userName.errors.required" class="invalid-feedback">Usuário obrigatório.</div>
         </div>
         <div class="form-row">
-          <div class="form-group col-sm-6">
+          <div class="form-group">
             <label for="">Senha:</label>
             <input class="form-control" [ngClass]="{'is-invalid': f.senha.errors && f.senha.touched}" type="password"
               placeholder="Digite uma Senha" formControlName="senha" />
@@ -52,7 +52,7 @@
             <div *ngIf="f.senha.errors?.minlength" class="invalid-feedback">Senha precisa ter no minimo 6 caracteres.
             </div>
           </div>
-          <div class="form-group col-sm-6">
+          <div class="form-group">
             <label for="">Confirmar Senha:</label>
             <input class="form-control" [ngClass]="{'is-invalid': f.confirmeSenha.errors && f.confirmeSenha.touched}"
               formControlName="confirmeSenha" type="password" placeholder="Confirme a Senha" />
@@ -65,7 +65,7 @@
         <div class="form-row p-1 mb-3">
           <div class="custom-control custom-checkbox">
             <input type="checkbox" class="custom-control-input" id="customCheck1">
-            <label class="custom-control-label">Eu concordo com os <a href="#">Termos de Uso</a>.</label>
+            <label class="custom-control-label ms-2">Eu concordo com os <a href="#">Termos de Uso</a>.</label>
           </div>
         </div>
         <div class="form-row">

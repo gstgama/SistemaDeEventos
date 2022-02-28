@@ -22,7 +22,6 @@ export class RegistrationComponent implements OnInit {
   public form!: FormGroup;
 
   public validation(): void{
-
     const formOptions: AbstractControlOptions = {
       validators: ValidatorField.MustMatch('senha', 'confirmeSenha')
     };
