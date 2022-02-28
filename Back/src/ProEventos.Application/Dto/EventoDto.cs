@@ -27,7 +27,6 @@ namespace ProEventos.Application.Dto
     Phone(ErrorMessage = "O campo {0} está inválido")]
     public string Telefone { get; set; }
 
-
     [Display(Name = "e-mail"),
     Required(ErrorMessage = "O campo {0} é necessário"),
     EmailAddress(ErrorMessage = "É campo {0} está inválido.")]
