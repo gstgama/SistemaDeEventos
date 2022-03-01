@@ -20,6 +20,16 @@ export class EventoDetalheComponent implements OnInit {
     return this.form.controls;
   }
 
+  get bsConfig(): any {
+    return {
+      isAnimated: true,
+      adaptivePosition: true,
+      dateInputFormat: 'DD/MM/YYYY hh:mm a',
+      containerClass: 'theme-default',
+      showWeekNumbers: false
+    }
+  }
+
   public validation(): void{
     this.form = this.fb.group({
       tema: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(50)]],
