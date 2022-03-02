@@ -1,6 +1,14 @@
-import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
 import { BsLocaleService } from 'ngx-bootstrap/datepicker';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
+
+import { EventoService } from '@app/services/evento.service';
+import { Evento } from '@app/models/Evento';
+
 
 @Component({
   selector: 'app-evento-detalhe',
@@ -9,15 +17,23 @@ import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 })
 export class EventoDetalheComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, private localeService: BsLocaleService) {
+  constructor(private fb: FormBuilder,
+              private localeService: BsLocaleService,
+              private route: ActivatedRoute,
+              private eventoService: EventoService,
+              private spinner: NgxSpinnerService,
+              private toastr: ToastrService) {
     this.localeService.use('pt-br');
   }
 
   ngOnInit(): void {
+    this.carregarEvento();
     this.validation();
   }
 
   public form!: FormGroup;
+
+  public evento = {} as Evento;
 
   get f(): any{
     return this.form.controls;
@@ -30,6 +46,26 @@ export class EventoDetalheComponent implements OnInit {
       dateInputFormat: 'DD/MM/YYYY hh:mm a',
       containerClass: 'theme-default',
       showWeekNumbers: false
+    }
+  }
+
+  carregarEvento(){
+    this.spinner.show();
+    let eventoParamId = this.route.snapshot.paramMap.get('id');
+
+    if (eventoParamId !== null){
+      this.eventoService.getEventoById(+eventoParamId).subscribe(
+        (evento: Evento) => {
+          this.evento = {... evento};
+          this.form.patchValue(this.evento);
+        },
+        (error: any) => {
+          console.log(error);
+          this.toastr.error('Não foi possivel carregar o evento.', 'Erro!')
+          this.spinner.hide();
+        },
+        () => this.spinner.hide()
+        );
     }
   }
 
