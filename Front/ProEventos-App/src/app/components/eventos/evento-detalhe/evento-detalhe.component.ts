@@ -67,6 +67,9 @@ export class EventoDetalheComponent implements OnInit {
         () => this.spinner.hide()
         );
     }
+    else {
+      this.spinner.hide();
+    }
   }
 
   public validation(): void{
@@ -87,6 +90,27 @@ export class EventoDetalheComponent implements OnInit {
 
   cssValidator(campForm: FormControl): any{
     return {'is-invalid': campForm.errors && campForm.touched }
+  }
+
+  salvarEvento(): void{
+    this.spinner.show();
+
+    if (this.form.valid){
+      this.evento = { ... this.form.value };
+
+      this.eventoService.postEvento(this.evento).subscribe(
+        (data: Evento) => {
+          //console.log(data);
+          this.toastr.success('Evento adicionado com sucesso.', 'Sucesso')
+        },
+        (error: any) => {
+          console.error(error);
+          this.spinner.hide();
+          this.toastr.error('Erro ao salvar evento!', 'Erro');
+        },
+        () => this.spinner.hide()
+      );
+    }
   }
 
 }
