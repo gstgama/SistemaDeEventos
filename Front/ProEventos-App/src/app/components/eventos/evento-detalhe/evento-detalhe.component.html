@@ -16,14 +16,14 @@
               caracteres</div>
           </div>
         </div>
-        <div class="form-row">
-          <div class="form-group col-md-8">
+        <div class="row">
+          <div class="form-group col-12 col-sm-12 col-md-12 col-lg-8">
             <label>Local</label>
             <input type="text" class="form-control" [ngClass]="cssValidator(f.local)" formControlName="local"
               placeholder="">
             <div *ngIf="f.local.errors?.required" class="invalid-feedback">Local obrigatório</div>
           </div>
-          <div class="form-group col-md-4">
+          <div class="form-group col-12 col-sm-12 col-md-12 col-lg-4">
             <label>Data e Hora</label>
             <input type="datetime" class="form-control" bsDatepicker [bsConfig]="bsConfig"
               value="{{evento.dataEvento | DateFormatPipe}}" [ngClass]="cssValidator(f.dataEvento)"
@@ -31,34 +31,28 @@
             <div *ngIf="f.dataEvento.errors?.required" class="invalid-feedback">Data e Hora obrigatório</div>
           </div>
         </div>
-        <div class="form-row">
-          <div class="form-group col-md-2">
+        <div class="row">
+          <div class="form-group col-12 col-sm-12 col-md-12 col-lg-2">
             <label>Quant. de pessoas</label>
             <input type="number" class="form-control" [ngClass]="cssValidator(f.qtdPessoas)"
               formControlName="qtdPessoas" placeholder="">
             <div *ngIf="f.qtdPessoas.errors?.required" class="invalid-feedback">Quantidade obrigatória</div>
             <div *ngIf="f.qtdPessoas.errors?.max" class="invalid-feedback">Máximo de 120.000</div>
           </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group col-md-2">
+          <div class="form-group col-12 col-sm-12 col-md-12 col-lg-3">
             <label>Telefone</label>
             <input type="text" class="form-control" [ngClass]="cssValidator(f.telefone)" formControlName="telefone"
               placeholder="(000) 90000-0000">
             <div *ngIf="f.telefone.errors?.required" class="invalid-feedback">Telefone obrigatório</div>
           </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group col-md-4">
+          <div class="form-group col-12 col-sm-12 col-md-12 col-lg-5">
             <label>Email</label>
             <input type="text" class="form-control" [ngClass]="cssValidator(f.email)" formControlName="email"
               placeholder="e-mail">
             <div *ngIf="f.email.errors?.required" class="invalid-feedback">E-mail obrigatório</div>
             <div *ngIf="f.email.errors?.email" class="invalid-feedback">Precisa ser um e-mail válido</div>
           </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group col-md-4">
+          <div class="form-group col-12 col-sm-12 col-md-12 col-lg-2">
             <label>Imagem</label>
             <input type="text" class="form-control" [ngClass]="cssValidator(f.imagemURL)" formControlName="imagemURL"
               placeholder="imagem">

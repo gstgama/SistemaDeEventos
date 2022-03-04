@@ -18,11 +18,11 @@ import { Evento } from '@app/models/Evento';
 export class EventoDetalheComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
-              private localeService: BsLocaleService,
-              private route: ActivatedRoute,
-              private eventoService: EventoService,
-              private spinner: NgxSpinnerService,
-              private toastr: ToastrService) {
+    private localeService: BsLocaleService,
+    private route: ActivatedRoute,
+    private eventoService: EventoService,
+    private spinner: NgxSpinnerService,
+    private toastr: ToastrService) {
     this.localeService.use('pt-br');
   }
 
@@ -32,10 +32,10 @@ export class EventoDetalheComponent implements OnInit {
   }
 
   public form!: FormGroup;
-
   public evento = {} as Evento;
+  public estadoSalvar: string = 'post';
 
-  get f(): any{
+  get f(): any {
     return this.form.controls;
   }
 
@@ -49,14 +49,15 @@ export class EventoDetalheComponent implements OnInit {
     }
   }
 
-  carregarEvento(){
+  carregarEvento() {
     this.spinner.show();
     let eventoParamId = this.route.snapshot.paramMap.get('id');
 
-    if (eventoParamId !== null){
+    if (eventoParamId !== null) {
+      this.estadoSalvar = 'put';
       this.eventoService.getEventoById(+eventoParamId).subscribe(
         (evento: Evento) => {
-          this.evento = {... evento};
+          this.evento = { ...evento };
           this.form.patchValue(this.evento);
         },
         (error: any) => {
@@ -65,14 +66,14 @@ export class EventoDetalheComponent implements OnInit {
           this.spinner.hide();
         },
         () => this.spinner.hide()
-        );
+      );
     }
     else {
       this.spinner.hide();
     }
   }
 
-  public validation(): void{
+  public validation(): void {
     this.form = this.fb.group({
       tema: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(50)]],
       local: ['', Validators.required],
@@ -84,32 +85,48 @@ export class EventoDetalheComponent implements OnInit {
     })
   }
 
-  public resetForm(): void{
+  public resetForm(): void {
     this.form.reset();
   }
 
-  cssValidator(campForm: FormControl): any{
-    return {'is-invalid': campForm.errors && campForm.touched }
+  cssValidator(campForm: FormControl): any {
+    return { 'is-invalid': campForm.errors && campForm.touched }
   }
 
-  salvarEvento(): void{
+  salvarEvento(): void {
     this.spinner.show();
 
-    if (this.form.valid){
-      this.evento = { ... this.form.value };
-
-      this.eventoService.postEvento(this.evento).subscribe(
-        (data: Evento) => {
-          //console.log(data);
-          this.toastr.success('Evento adicionado com sucesso.', 'Sucesso')
-        },
-        (error: any) => {
-          console.error(error);
-          this.spinner.hide();
-          this.toastr.error('Erro ao salvar evento!', 'Erro');
-        },
-        () => this.spinner.hide()
-      );
+    if (this.form.valid) {
+      if (this.estadoSalvar === 'post') {
+        this.evento = { ... this.form.value };
+        this.eventoService.postEvento(this.evento).subscribe(
+          (data: Evento) => {
+            //console.log(data);
+            this.toastr.success('Evento adicionado com sucesso.', 'Sucesso')
+          },
+          (error: any) => {
+            console.error(error);
+            this.spinner.hide();
+            this.toastr.error('Erro ao salvar evento!', 'Erro');
+          },
+          () => this.spinner.hide()
+        );
+      }
+      else {
+        this.evento = { id: this.evento.id, ... this.form.value };
+        this.eventoService.putEvento(this.evento.id, this.evento).subscribe(
+          (data: Evento) => {
+            //console.log(data);
+            this.toastr.success('Evento atualizado com sucesso.', 'Sucesso')
+          },
+          (error: any) => {
+            console.error(error);
+            this.spinner.hide();
+            this.toastr.error('Erro ao atualizar evento!', 'Erro');
+          },
+          () => this.spinner.hide()
+        );
+      }
     }
   }
 
