@@ -21,6 +21,36 @@ namespace ProEventos.Application.Contracts
       _lotePersist = lotePersist;
       _mapper = mapper;
     }
+
+    public async Task AddLote(int eventoId, LoteDto model) //Usado em SaveLotes()
+    {
+      try
+      {
+        var lote = _mapper.Map<Lote>(model);
+        lote.EventoId = eventoId;
+
+        _geralPersist.Add<Lote>(lote);
+
+        await _geralPersist.SaveChangesAsync();
+      }
+      catch (Exception ex)
+      {
+        throw new Exception(ex.Message);
+      }
+    }
+
+    public async Task UpdateLote(int eventoId, Lote[] lotes, LoteDto model) //Usado em SaveLotes()
+    {
+      var lote = lotes.FirstOrDefault(lote =>
+                                      lote.EventoId == eventoId);
+      model.EventoId = eventoId;
+
+      _mapper.Map(model, lote);
+
+      _geralPersist.Update<Lote>(lote);
+
+      await _geralPersist.SaveChangesAsync();
+    }
     public async Task<LoteDto[]> SaveLotes(int eventoId, LoteDto[] models)
     {
       try
@@ -32,25 +62,17 @@ namespace ProEventos.Application.Contracts
         {
           if (model.Id == 0)
           {
-
+            await AddLote(eventoId, model);
           }
           else
           {
-            var lote = lotes.FirstOrDefault(lote => lote.EventoId == eventoId);
-            model.EventoId = eventoId;
-
-            _mapper.Map(model, lote);
-
-            _geralPersist.Update<Lote>(lote);
-
-            await _geralPersist.SaveChangesAsync();
+            await UpdateLote(eventoId, lotes, model);
           }
         }
 
         var loteRetorno = await _lotePersist.GetLotesByEventoIdAsync(eventoId);
 
         return _mapper.Map<LoteDto[]>(loteRetorno);
-
       }
       catch (Exception ex)
       {
