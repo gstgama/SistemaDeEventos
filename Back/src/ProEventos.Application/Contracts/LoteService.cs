@@ -42,7 +42,7 @@ namespace ProEventos.Application.Contracts
     public async Task UpdateLote(int eventoId, Lote[] lotes, LoteDto model) //Usado em SaveLotes()
     {
       var lote = lotes.FirstOrDefault(lote =>
-                                      lote.EventoId == eventoId);
+                                      lote.Id == model.Id);
       model.EventoId = eventoId;
 
       _mapper.Map(model, lote);
