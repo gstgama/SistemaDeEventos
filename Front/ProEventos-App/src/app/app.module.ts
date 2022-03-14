@@ -1,4 +1,4 @@
-import { NgModule,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http'
@@ -27,6 +27,7 @@ import { TituloComponent } from './shared/titulo/titulo.component';
 import { NavComponent } from './shared/nav/nav.component';
 
 import { EventoService } from './services/evento.service';
+import { LoteService } from './services/lote.service';
 
 import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
 import { EventoListaComponent } from './components/eventos/evento-lista/evento-lista.component';
@@ -53,7 +54,7 @@ defineLocale('pt-br', ptBrLocale);
     UserComponent,
     LoginComponent,
     RegistrationComponent
-   ],
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -76,7 +77,10 @@ defineLocale('pt-br', ptBrLocale);
     NgxSpinnerModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [EventoService],
+  providers: [
+    EventoService,
+    LoteService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
