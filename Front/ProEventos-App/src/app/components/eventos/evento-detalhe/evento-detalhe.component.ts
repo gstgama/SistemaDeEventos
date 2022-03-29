@@ -1,4 +1,4 @@
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
@@ -80,19 +80,26 @@ export class EventoDetalheComponent implements OnInit {
 
   public validation(): void {
     this.form = this.fb.group({
-      tema: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(50)]],
+      tema: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(4),
+          Validators.maxLength(50),
+        ],
+      ],
       local: ['', Validators.required],
       dataEvento: ['', Validators.required],
       qtdPessoas: ['', [Validators.required, Validators.max(120000)]],
-      telefone: ['', [Validators.required]],
+      telefone: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      imagemURL: ['', [Validators.required]],
-      lotes: this.fb.array([])
-    })
+      imagemURL: [''],
+      lotes: this.fb.array([]),
+    });
   }
 
   adicionarLote(): void {
-    this.lotes.push(this.criarLote({ id: 0 } as Lote))
+    this.lotes.push(this.criarLote({ id: 0 } as Lote));
   }
 
   criarLote(lote: Lote): FormGroup {
@@ -101,8 +108,8 @@ export class EventoDetalheComponent implements OnInit {
       nome: [lote.nome, Validators.required],
       quantidade: [lote.quantidade, Validators.required],
       preco: [lote.preco, Validators.required],
-      dataInicio: [lote.dataInicio],
-      dataFim: [lote.dataFim]
+      dataInicio: [lote.dataInicio, Validators.required],
+      dataFim: [lote.dataFim, Validators.required],
     });
   }
 
@@ -110,7 +117,7 @@ export class EventoDetalheComponent implements OnInit {
     this.form.reset();
   }
 
-  cssValidator(campForm: FormControl): any {
+  cssValidator(campForm: FormControl | AbstractControl): any {
     return { 'is-invalid': campForm.errors && campForm.touched }
   }
 
