@@ -1,6 +1,6 @@
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -20,7 +20,8 @@ export class EventoDetalheComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
     private localeService: BsLocaleService,
-    private route: ActivatedRoute,
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
     private eventoService: EventoService,
     private spinner: NgxSpinnerService,
     private toastr: ToastrService) {
@@ -35,6 +36,10 @@ export class EventoDetalheComponent implements OnInit {
   public form!: FormGroup;
   public evento = {} as Evento;
   public estadoSalvar: string = 'post';
+
+  get modoSalvar(): boolean {
+    return this.estadoSalvar === 'put';
+  }
 
   get lotes(): FormArray {
     return this.form.get('lotes') as FormArray;
@@ -56,7 +61,7 @@ export class EventoDetalheComponent implements OnInit {
 
   carregarEvento() {
     this.spinner.show();
-    let eventoParamId = this.route.snapshot.paramMap.get('id');
+    let eventoParamId = this.activatedRoute.snapshot.paramMap.get('id');
 
     if (eventoParamId !== null) {
       this.estadoSalvar = 'put';
@@ -130,7 +135,10 @@ export class EventoDetalheComponent implements OnInit {
         : { id: this.evento.id, ... this.form.value };
 
       this.eventoService[this.estadoSalvar](this.evento).subscribe(
-        () => this.toastr.success('Evento salvo com sucesso.', 'Sucesso'),
+        (eventoRetorno: Evento) => {
+          this.toastr.success('Evento salvo com sucesso.', 'Sucesso');
+          this.router.navigate([`eventos/detalhe/${eventoRetorno.id}`]);
+        },
         (error: any) => {
           console.error(error);
           this.toastr.error('Erro ao salvar evento!', 'Erro');
