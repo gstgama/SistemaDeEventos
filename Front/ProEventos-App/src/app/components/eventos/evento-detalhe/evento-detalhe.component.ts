@@ -9,6 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 import { EventoService } from '@app/services/evento.service';
 import { Evento } from '@app/models/Evento';
 import { Lote } from '@app/models/Lote';
+import { LoteService } from '@app/services/lote.service';
 
 
 @Component({
@@ -24,7 +25,8 @@ export class EventoDetalheComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private eventoService: EventoService,
     private spinner: NgxSpinnerService,
-    private toastr: ToastrService) {
+    private toastr: ToastrService,
+    private loteService: LoteService) {
     this.localeService.use('pt-br');
   }
 
@@ -33,6 +35,7 @@ export class EventoDetalheComponent implements OnInit {
     this.validation();
   }
 
+  public eventoId: number;
   public form!: FormGroup;
   public evento = {} as Evento;
   public estadoSalvar: string = 'post';
@@ -61,14 +64,18 @@ export class EventoDetalheComponent implements OnInit {
 
   carregarEvento() {
     this.spinner.show();
-    let eventoParamId = this.activatedRoute.snapshot.paramMap.get('id');
+    this.eventoId = +this.activatedRoute.snapshot.paramMap.get('id');
 
-    if (eventoParamId !== null) {
+    if (this.eventoId !== null || this.eventoId === 0) {
       this.estadoSalvar = 'put';
-      this.eventoService.getEventoById(+eventoParamId).subscribe(
+      this.eventoService.getEventoById(this.eventoId).subscribe(
         (evento: Evento) => {
           this.evento = { ...evento };
           this.form.patchValue(this.evento);
+          this.evento.lotes.forEach(lote => {
+            this.lotes.push(this.criarLote(lote));
+          })
+          // this.carregarLotes();
         },
         (error: any) => {
           console.log(error);
@@ -81,6 +88,20 @@ export class EventoDetalheComponent implements OnInit {
     else {
       this.spinner.hide();
     }
+  }
+
+  carregarLotes(): void {
+    this.loteService.getLotesByEventosId(this.eventoId).subscribe(
+      (lotesRetorno: Lote[]) => {
+        lotesRetorno.forEach(lote => {
+          this.lotes.push(this.criarLote(lote));
+        })
+      },
+      (error: any) => {
+        this.toastr.error('Erro ao tentar carregar lotes.', 'Erro');
+        console.error(error);
+      }
+    )
   }
 
   public validation(): void {
@@ -144,6 +165,25 @@ export class EventoDetalheComponent implements OnInit {
           this.toastr.error('Erro ao salvar evento!', 'Erro');
         }
       ).add(() => this.spinner.hide());
+    }
+  }
+
+  salvarLotes(): void {
+    this.spinner.show();
+
+    if (this.form.controls['lotes'].valid) {
+      this.loteService.saveLotes(this.eventoId, this.form.value.lotes)
+        .subscribe(
+          (lotes: Lote[]) => {
+            this.toastr.success('Lotes salvos com sucesso.', 'Sucesso!');
+          },
+          (error: any) => {
+            this.toastr.error('Erro ao tentar salvar lotes', 'Erro');
+            console.log(error);
+          }
+        ).add(() => this.spinner.hide());
+
+      this.spinner.hide();
     }
   }
 
